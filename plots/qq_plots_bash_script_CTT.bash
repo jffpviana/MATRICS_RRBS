@@ -15,10 +15,8 @@ module load R/3.3.1-foss-2016b #load R module
 cohort="CTT"
 brain_region="PFC"
 output_path="/gpfs/ts0/projects/Research_Project-129726/MATRICS/CTT_PFC/analysis/"
-results_type="ANOVA_results_withcounts"
 
-Rscript /gpfs/ts0/projects/Research_Project-129726/MATRICS/general_scripts/single_site_analysis/2.create_CpG_sites_txt_file.r $cohort $brain_region $output_path $results_type
-
+Rscript /gpfs/ts0/projects/Research_Project-129726/MATRICS/general_scripts/plots/qq_plots.r $cohort $brain_region $output_path 
 
 
 #####CTT_HC samples####
@@ -26,9 +24,8 @@ Rscript /gpfs/ts0/projects/Research_Project-129726/MATRICS/general_scripts/singl
 cohort="CTT"
 brain_region="HC"
 output_path="/gpfs/ts0/projects/Research_Project-129726/MATRICS/CTT_HC/analysis/"
-results_type="ANOVA_results_withcounts"
 
-Rscript /gpfs/ts0/projects/Research_Project-129726/MATRICS/general_scripts/single_site_analysis/2.create_CpG_sites_txt_file.r $cohort $brain_region $output_path $results_type
+Rscript /gpfs/ts0/projects/Research_Project-129726/MATRICS/general_scripts/plots/qq_plots.r $cohort $brain_region $output_path
 
 
 
@@ -38,9 +35,8 @@ Rscript /gpfs/ts0/projects/Research_Project-129726/MATRICS/general_scripts/singl
 cohort="CTT"
 brain_region="HPT"
 output_path="/gpfs/ts0/projects/Research_Project-129726/MATRICS/CTT_HPT/analysis/"
-results_type="ANOVA_results_withcounts"
 
-Rscript /gpfs/ts0/projects/Research_Project-129726/MATRICS/general_scripts/single_site_analysis/2.create_CpG_sites_txt_file.r $cohort $brain_region $output_path $results_type
+Rscript /gpfs/ts0/projects/Research_Project-129726/MATRICS/general_scripts/plots/qq_plots.r $cohort $brain_region $output_path 
 
 
 

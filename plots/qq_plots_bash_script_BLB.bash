@@ -15,10 +15,8 @@ module load R/3.3.1-foss-2016b #load R module
 cohort="BLB"
 brain_region="ACC"
 output_path="/gpfs/ts0/projects/Research_Project-129726/MATRICS/BLB_ACC/analysis/"
-genome="mm10"
 
-Rscript /gpfs/ts0/projects/Research_Project-129726/MATRICS/general_scripts/single_site_analysis/3.annotate_CpGs.r $cohort $brain_region $output_path $genome
-
+Rscript /gpfs/ts0/projects/Research_Project-129726/MATRICS/general_scripts/plots/qq_plots.r $cohort $brain_region $output_path 
 
 
 #####BLB_MCC samples####
@@ -26,9 +24,8 @@ Rscript /gpfs/ts0/projects/Research_Project-129726/MATRICS/general_scripts/singl
 cohort="BLB"
 brain_region="MCC"
 output_path="/gpfs/ts0/projects/Research_Project-129726/MATRICS/BLB_MCC/analysis/"
-genome="mm10"
 
-Rscript /gpfs/ts0/projects/Research_Project-129726/MATRICS/general_scripts/single_site_analysis/3.annotate_CpGs.r $cohort $brain_region $output_path $genome
+Rscript /gpfs/ts0/projects/Research_Project-129726/MATRICS/general_scripts/plots/qq_plots.r $cohort $brain_region $output_path
 
 
 
@@ -38,9 +35,8 @@ Rscript /gpfs/ts0/projects/Research_Project-129726/MATRICS/general_scripts/singl
 cohort="BLB"
 brain_region="VMH"
 output_path="/gpfs/ts0/projects/Research_Project-129726/MATRICS/BLB_VMH/analysis/"
-genome="mm10"
 
-Rscript /gpfs/ts0/projects/Research_Project-129726/MATRICS/general_scripts/single_site_analysis/3.annotate_CpGs.r $cohort $brain_region $output_path $genome
+Rscript /gpfs/ts0/projects/Research_Project-129726/MATRICS/general_scripts/plots/qq_plots.r $cohort $brain_region $output_path 
 
 
 
