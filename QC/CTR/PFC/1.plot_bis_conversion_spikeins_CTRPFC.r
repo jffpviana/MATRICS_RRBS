@@ -1,10 +1,9 @@
-args <- commandArgs(TRUE) # option to read arguments from bash script
-args[1] -> input_dir
-args[2] -> plots_dir
-
-
 library(data.table)
 library(stringr) #load library
+
+
+input_dir <- "/rds/projects/v/vianaj-genomics-brain-development/MATRICS/CTR/PFC/methylation/"
+plots_dir <- "/rds/projects/v/vianaj-genomics-brain-development/MATRICS/CTR/PFC/QC/plots/"
 
 
 list_datasets <- list() # creates a list
