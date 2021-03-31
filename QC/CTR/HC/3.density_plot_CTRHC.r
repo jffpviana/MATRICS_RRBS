@@ -1,4 +1,3 @@
-Rlib <- "/rds/homes/v/vianaj/R/x86_64-pc-linux-gnu-library/3.6"
 library(data.table)
 library(stringr)
 library(ggplot2)
