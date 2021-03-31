@@ -23,8 +23,8 @@ for (i in 1:length(list_cov)){ #for all the .cov files in the folder execute the
 
 for(k in 1:length(list_cov)){ #loop through the list of samples
 	as.data.frame(list_datasets[[k]], stringsAsFactors=FALSE)->temp_data #select 1 dataframe
-	temp_data[grep("RRBS_methylated_control", temp_data$chromosome),]->spikes_meth #extract coverage of meth spike-ins
-	temp_data[grep("RRBS_unmethylated_control", temp_data$chromosome),]->spikes_unmeth #extract coverage of unmeth spike-ins
+	temp_data[-c(grep("RRBS_unmethylated_control", temp_data$chromosome), grep("RRBS_methylated_control", temp_data$chromosome)),]->temp_data #remove spike-ins
+
 
 	pos_factor_meth<-factor(as.character(spikes_meth$start_position), levels=spikes_meth$start_position)
 	pos_factor_unmeth<-factor(as.character(spikes_unmeth$start_position), levels=spikes_unmeth$start_position)
