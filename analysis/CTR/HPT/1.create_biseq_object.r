@@ -3,9 +3,9 @@ library(plyr)
 library(data.table)
 library(BiSeq)
 
-input_dir <- "/rds/projects/v/vianaj-genomics-brain-development/MATRICS/CTR/HC/methylation/"
-output_dir <- "/rds/projects/v/vianaj-genomics-brain-development/MATRICS/CTR/HC/analysis/"
-region <- "HC_ID"
+input_dir <- "/rds/projects/v/vianaj-genomics-brain-development/MATRICS/CTR/HPT/methylation/"
+output_dir <- "/rds/projects/v/vianaj-genomics-brain-development/MATRICS/CTR/HPT/analysis/"
+region <- "HPT_ID"
 cohort <- "CTR"
 
 list_datasets <- list() # creates a list
