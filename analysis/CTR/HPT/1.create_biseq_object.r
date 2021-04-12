@@ -15,6 +15,12 @@ print(list_cov) #print the list of .cov files so can check on log files
 
 pheno <- read.csv("/rds/projects/v/vianaj-genomics-brain-development/MATRICS/CTR/phenoCTR.csv", stringsAsFactors=FALSE) #load phenotype file
 
-data_meth <- readBismark(files = paste0(input_dir, "/", list_cov), colData = pheno[ , region]) #create BiSeq object with all samples
+pheno$Group <- as.factor(pheno$Group) #transform group into factors
+
+identical(pheno[,region], str_replace(list_cov, ".cov", ""))#check if same order
+
+
+data_meth <- readBismark(files = paste0(input_dir, "/", list_cov), colData = pheno) #create BiSeq object with all samples
+
 
 save(data_meth, file=paste0(output_dir, "biseq_rawmeth_obj_", cohort, "_", str_replace(region, "_ID", ""))) #save BiSeq object
