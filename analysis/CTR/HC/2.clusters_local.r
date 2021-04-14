@@ -8,8 +8,8 @@ library(plyr)
 library(data.table)
 library(BiSeq)
 
-input_dir <- "/rds/projects/v/vianaj-genomics-brain-development/MATRICS/CTR/HC/methylation/"
-output_dir <- "/rds/projects/v/vianaj-genomics-brain-development/MATRICS/CTR/HC/analysis/"
+input_dir <- "/home/vianaj/Documents/MATRICS/analysis/CTR/HC/analysis/"
+output_dir <- "/home/vianaj/Documents/MATRICS/analysis/CTR/HC/analysis/"
 plots_dir <- "/rds/projects/v/vianaj-genomics-brain-development/MATRICS/CTR/HC/QC/plots/"
 region <- "HC_ID"
 cohort <- "CTR"
@@ -19,6 +19,7 @@ load(file=paste0(output_dir, "biseq_rawmeth_obj_", cohort, "_", str_replace(regi
 
 dim(data_meth)
 # 3322735      24
+
 
 rrbs.clust.unlim <- clusterSites(object = data_meth,
                                   groups = colData(data_meth)$Group,

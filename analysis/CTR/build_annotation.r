@@ -1,7 +1,7 @@
 ##
 library("TxDb.Rnorvegicus.UCSC.rn6.refGene") # load genome specific library
 input_dir <- "/home/vianaj/Documents/MATRICS/analysis/CTR/HC/methylation/"
-output_dir <- "/home/vianaj/Documents/MATRICS/analysis/CTR/HC/methylation/"
+output_dir <- "/home/vianaj/Documents/MATRICS/analysis/CTR/"
 genome <- "rn6"
 ##
 
@@ -20,4 +20,4 @@ print(list_cov) #print the list of .cov files so can check on log files
 annos <- builtin_annotations()[grep(genome, builtin_annotations())] #all anotations available for this genome in he package
 annotations = build_annotations(genome = genome, annotations = annos) #build annotation object
 
-save(annos, annotations, file="annotations_rn6_130421.RData")
+save(annos, annotations, file=paste0(output_dir, "annotations_rn6_130421.RData"))
