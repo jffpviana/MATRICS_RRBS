@@ -3,8 +3,9 @@ library(plyr)
 library(data.table)
 library(BiSeq)
 
-input_dir <- "/rds/projects/v/vianaj-genomics-brain-development/MATRICS/CTR/HC/methylation/"
-output_dir <- "/rds/projects/v/vianaj-genomics-brain-development/MATRICS/CTR/HC/analysis/"
+input_dir <- "/home/vianaj/Documents/MATRICS/analysis/CTR/HC/methylation/"
+output_dir <- "/home/vianaj/Documents/MATRICS/analysis/CTR/HC/analysis/"
+pheno_path <- "/home/vianaj/Documents/MATRICS/analysis/CTR/phenoCTR.csv"
 region <- "HC_ID"
 cohort <- "CTR"
 
@@ -13,7 +14,7 @@ list_cov <- dir(path=input_dir, pattern ="*.cov") # creates the list of all .cov
 
 print(list_cov) #print the list of .cov files so can check on log files
 
-pheno <- read.csv("/rds/projects/v/vianaj-genomics-brain-development/MATRICS/CTR/phenoCTR.csv", stringsAsFactors=FALSE) #load phenotype file
+pheno <- read.csv(pheno_path, stringsAsFactors=FALSE) #load phenotype file
 
 data_meth <- readBismark(files = paste0(input_dir, "/", list_cov), colData = pheno[ , region]) #create BiSeq object with all samples
 

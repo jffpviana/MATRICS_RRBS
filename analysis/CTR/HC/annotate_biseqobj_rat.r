@@ -35,6 +35,9 @@ for(i in scaffolds){
 	seqlevels(data_meth@rowRanges)[grep(i, seqlevels(data_meth@rowRanges))] <- new_scaffold # replace in the data object
 }
 
-temp_annotated <- annotate_regions(regions = data_meth@rowRanges, annotations = annotations, ignore.strand = TRUE, quiet = FALSE)
+temp_annotated <-  annotateGRanges(object = data_meth@rowRanges, regions = annotations, name = 'Anno', regionInfo = 'tx_id')
+
+data_meth@rowRanges <- temp_annotated
+
 
 save(data_meth, file=paste0(input_dir, "biseq_anno_meth_obj_", cohort, "_", str_replace(region, "_ID", ""), ".RData"))
