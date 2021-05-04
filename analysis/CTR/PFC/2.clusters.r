@@ -3,8 +3,7 @@ library(plyr)
 library(data.table)
 library(BiSeq)
 
-#input_dir <- "/home/vianaj/Documents/MATRICS/analysis/CTR/HC/analysis/"
-#output_dir <- "/home/vianaj/Documents/MATRICS/analysis/CTR/HC/analysis/"
+
 args <- commandArgs(TRUE) # option to read arguments from bash script
 args[1]->input_dir
 args[2]->output_dir

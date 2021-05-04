@@ -3,12 +3,12 @@ library(plyr)
 library(data.table)
 library(BiSeq)
 
-#input_dir <- "/home/vianaj/Documents/MATRICS/analysis/CTR/HC/analysis/"
-#output_dir <- "/home/vianaj/Documents/MATRICS/analysis/CTR/HC/analysis/"
-input_dir <- "/rds/projects/v/vianaj-genomics-brain-development/MATRICS/CTR/HC/analysis/"
-output_dir <- "//rds/projects/v/vianaj-genomics-brain-development/MATRICS/CTR/HC/analysis/"
-region <- "HC_ID"
-cohort <- "CTR"
+
+args <- commandArgs(TRUE) # option to read arguments from bash script
+args[1]->input_dir
+args[2]->output_dir
+args[3]->region
+args[4]->cohort
 
 
 load(file=paste0(input_dir, "biseq_rawmeth_obj_", cohort, "_", str_replace(region, "_ID", ""))) #load BiSeq object
