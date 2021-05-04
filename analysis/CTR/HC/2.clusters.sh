@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --ntasks 8
+#SBATCH --ntasks 10
 #SBATCH --time 1-0:0:0
 #SBATCH --qos castles
 #SBATCH --mail-type ALL

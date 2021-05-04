@@ -33,4 +33,4 @@ rrbs.clust.lim <- limitCov(rrbs.clust.unlim, maxCov = quant)
 #We then smooth the methylation values of CpG sites within the clusters with the default bandwidth h = 80 base pairs.
 predictedMeth <- predictMeth(object = rrbs.clust.lim, mc.cores=8)
 
-save(predictedMeth, file=paste0(output_dir, "biseq_predictedmeth_obj_", cohort, "_", str_replace(region, "_ID", ""))) #save BiSeq object
+save(rrbs.clust.unlim, rrbs.clust.lim, predictedMeth, file=paste0(output_dir, "biseq_predictedmeth_obj_", cohort, "_", str_replace(region, "_ID", ""))) #save BiSeq object
