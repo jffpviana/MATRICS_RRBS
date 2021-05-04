@@ -3,17 +3,20 @@ library(plyr)
 library(data.table)
 library(BiSeq)
 
-input_dir <- "/rds/projects/v/vianaj-genomics-brain-development/MATRICS/CTR/HC/methylation/"
+input_dir <- "/rds/projects/v/vianaj-genomics-brain-development/MATRICS/CTR/HC/analysis/"
 output_dir <- "/rds/projects/v/vianaj-genomics-brain-development/MATRICS/CTR/HC/analysis/"
 plots_dir <- "/rds/projects/v/vianaj-genomics-brain-development/MATRICS/CTR/HC/QC/plots/"
 region <- "HC_ID"
 cohort <- "CTR"
 
 
-load(file=paste0(output_dir, "biseq_rawmeth_obj_", cohort, "_", str_replace(region, "_ID", ""))) #load BiSeq object
+load(file=paste0(input_dir, "biseq_predictedmeth_obj_", cohort, "_", str_replace(region, "_ID", ""))) #load BiSeq object
 
-dim(data_meth)
-# 3322735      24
+dim(predictedMeth)
+#2606331      24
+
+
+
 
 round(perc.samples*ncol(object))
 
