@@ -18,4 +18,4 @@ output_dir="/rds/projects/v/vianaj-genomics-brain-development/MATRICS/CTR/HC/ana
 region="HC_ID"
 cohort="CTR"
 
-Rscript 2.clusters.r $input_dir $output_dir $region $cohort
+Rscript 2.cluster_smooth.r $input_dir $output_dir $region $cohort

@@ -14,4 +14,13 @@ load(file=paste0(output_dir, "biseq_rawmeth_obj_", cohort, "_", str_replace(regi
 load(file=paste0(output_dir, "biseq_predictedmeth_obj_", cohort, "_", str_replace(region, "_ID", ""))) #load clustered/smooth BiSeq objects
 
 
-rrbs.reduced <- filterBySharedRegions(object=data_meth, groups=colData(data_meth)$Group, perc.samples=0.5, minCov=10)
+rrbs.raw.reduced <- filterBySharedRegions(object=data_meth, groups=colData(data_meth)$Group, perc.samples=0.5, minCov=10)
+
+dim(data_meth)
+#3322735      24
+
+dim(rrbs.raw.reduced)
+#1047652      24
+
+#convert BSRaw to BSRel object
+rrbs.raw.rel <- rawToRel(rrbs.raw.reduced) # convert to methylation values

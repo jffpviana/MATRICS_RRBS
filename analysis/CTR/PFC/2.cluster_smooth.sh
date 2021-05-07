@@ -14,7 +14,7 @@ export R_LIBS_USER=${HOME}/R/library/${EBVERSIONR}/${BB_CPU}
 cd /rds/projects/v/vianaj-genomics-brain-development/MATRICS/jobs/CTR/PFC/
 
 input_dir="/rds/projects/v/vianaj-genomics-brain-development/MATRICS/CTR/PFC/analysis/"
-output_dir="//rds/projects/v/vianaj-genomics-brain-development/MATRICS/CTR/PFC/analysis/"
+output_dir="/rds/projects/v/vianaj-genomics-brain-development/MATRICS/CTR/PFC/analysis/"
 region="PFC_ID"
 cohort="CTR"
 
