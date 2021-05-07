@@ -23,7 +23,9 @@ rrbs.clust.unlim <- clusterSites(object = data_meth,
                                   min.sites = 5,
                                   max.dist = 500)  #searches for agglomerations of CpG sites across all samples
 
-#In the smoothing step CpG sites with high coverages get high weights. To reduce bias due to unusually high coverages we limit the coverage
+#In the smoothing step CpG sites with high coverages get high weights. To reduce bias due to unusually high coverages we limit the coverage.
+#Number of methylated and unmethylated reads of a CpG site with coverage above maxCov are reduced such that the methylation level remains unchanged.
+
 
 ind.cov <- totalReads(rrbs.clust.unlim) > 0
 quant <- quantile(totalReads(rrbs.clust.unlim)[ind.cov], 0.9)
