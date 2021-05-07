@@ -16,6 +16,9 @@ print(list_cov) #print the list of .cov files so can check on log files
 
 pheno <- read.csv(pheno_path, stringsAsFactors=FALSE) #load phenotype file
 
-data_meth <- readBismark(files = paste0(input_dir, "/", list_cov), colData = pheno[ , region]) #create BiSeq object with all samples
+data_meth <- readBismark(files = paste0(input_dir, "/", list_cov), colData = pheno) #create BiSeq object with all samples
+
+
+colData(data_meth)$Group <- factor(colData(data_meth)$Group, levels=c("low", "inter", "high"))
 
 save(data_meth, file=paste0(output_dir, "biseq_rawmeth_obj_", cohort, "_", str_replace(region, "_ID", ""))) #save BiSeq object
