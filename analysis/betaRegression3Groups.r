@@ -1,4 +1,13 @@
-.betaRegression3Groups <- function(formula, link = "probit", object, mc.cores, ...){
+# Adapted Beta Regression function from Biseq (https://rdrr.io/bioc/BiSeq/src/R/betaRegression.R)
+
+
+library(BiSeq)
+library(betareg)
+library(lmtest) # to use likelihood-ratio test (lrt)
+
+
+
+betaRegression3Groups <- function(formula, link = "probit", object, mc.cores, ...){
 
   strand(object) <- "*"
   object <- sort(object)
@@ -65,12 +74,16 @@
                        )
       options(show.error.messages = TRUE)
       if((class(lmodel) == "try-error")){
-        p.val[j] <- NA
-        meth.diff[j] <- NA
+        p.val1[j] <- NA
+        meth.diff1[j] <- NA
+        p.val2[j] <- NA
+        meth.diff2[j] <- NA
       } else{
         if(!lmodel$converged){
-	  p.val[j] <- NA
-	  meth.diff[j] <- NA
+	  p.val1[j] <- NA
+	  meth.diff1[j] <- NA
+    p.val2[j] <- NA
+	  meth.diff2[j] <- NA
 	} else{
                                         # Test auf 0: 2 * pnorm(-abs(Estimate / Std.Error))
                                         # Test auf min.diff > 0: 2 * min(0.5, pnorm( -(abs(Estimate)-min.diff)/Std.Error, mean=-min.diff))
@@ -84,8 +97,8 @@
           meth.group1[j] <- inv.link(baseline)
           meth.group2[j] <- inv.link(baseline + coef1)
           meth.group3[j] <- inv.link(baseline + coef2)
-          meth.diff1[j] <-  meth.group1[j] - meth.group2[j]
-          meth.diff2[j] <-  meth.group1[j] - meth.group3[j]
+          meth.diff1[j] <-  meth.group2[j] - meth.group1[j]
+          meth.diff2[j] <-  meth.group3[j] - meth.group1[j]
           pseudo.R.sqrt[j] <- lmodel$pseudo.r.squared
           estimate1[j] <- coef1
           std.error1[j] <- se1
@@ -121,15 +134,3 @@
   summary.df$cluster.id <- mcols(rowRanges(object))$cluster.id
   return(summary.df)
 }
-
-
-
-setMethod("betaRegression",
-          signature=c(formula = "formula", link = "character", object="BSrel", mc.cores = "numeric"),
-          .betaRegression)
-
-setMethod("betaRegression",
-          signature=c(formula = "formula", link = "character",  object="BSrel", mc.cores = "missing"),
-          function(formula, link, object, ...) {
-            .betaRegression(formula, link, object, mc.cores = 1, ...)
-          })
