@@ -1,4 +1,4 @@
-.betaRegression <- function(formula, link = "probit", object, mc.cores, ...){
+.betaRegression3Groups <- function(formula, link = "probit", object, mc.cores, ...){
 
   strand(object) <- "*"
   object <- sort(object)
