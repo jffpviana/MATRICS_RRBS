@@ -15,7 +15,7 @@ args[6]->cohort
 source(function_path)
 numcores <- detectCores()
 
-load(paste0(input_dir, "betas_all_obj_", cohort, "_", str_replace(region, "_ID", ""))) #save BiSeq object
+load(paste0(input_dir, "betas_all_obj_", cohort, "_", str_replace(region, "_ID", ""))) #load BiSeq object
 
 group <- colData(betas_all_obj)$Group
 
