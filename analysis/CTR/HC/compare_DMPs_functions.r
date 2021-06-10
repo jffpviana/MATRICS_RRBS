@@ -32,9 +32,9 @@ if("logpval1_nw"%in%colnames(results_table)){ #if this is one of the weighted re
 
   logt <- -log10(1:nrow(results_table)/nrow(results_table)) # calculate theoretical quantiles for qq plot
 
-  logp1 <- cbind(results_table[, c("p.val1", "log10pval1","logpval1_nw")], logt, rep("low_vs_inter", nrow(results_table))) #get data frame with results relative to low vs inter comparison
+  logp1 <- cbind(results_table[order(results_table$p.val1), c("p.val1", "log10pval1","logpval1_nw")], logt, rep("low_vs_inter", nrow(results_table))) #get data frame with results relative to low vs inter comparison, ordered by p-value
 
-  logp2 <- cbind(results_table[, c("p.val2", "log10pval2","logpval2_nw")], logt, rep("low_vs_high", nrow(results_table))) #get data frame with results relative to low vs high comparison
+  logp2 <- cbind(results_table[order(results_table$p.val2), c("p.val2", "log10pval2","logpval2_nw")], logt, rep("low_vs_high", nrow(results_table))) #get data frame with results relative to low vs high comparison, ordered by p-value
 
   colnames(logp1)<- c("pval", "log10pval", "log10pval_nw", "theoretical", "identity")
   rownames(logp1)<-NULL #remore rownames so we can row bind the low vs inter and low vs high results
@@ -47,9 +47,9 @@ if("logpval1_nw"%in%colnames(results_table)){ #if this is one of the weighted re
   }else{ #if the results table is the non weighted results than it will have one   logt <- -log10(1:nrow(results_table)/nrow(results_table)) # calculate theoretical quantiles for qq plot
     logt <- -log10(1:nrow(results_table)/nrow(results_table)) # calculate theoretical quantiles for qq plot
 
-    logp1 <- cbind(results_table[, c("p.val1", "log10pval1")], logt, rep("low_vs_inter", nrow(results_table))) #get data frame with results relative to low vs inter comparison
+    logp1 <- cbind(results_table[order(results_table$p.val1), c("p.val1", "log10pval1")], logt, rep("low_vs_inter", nrow(results_table))) #get data frame with results relative to low vs inter comparison, ordered by p-value
 
-    logp2 <- cbind(results_table[, c("p.val2", "log10pval2")], logt, rep("low_vs_high", nrow(results_table))) #get data frame with results relative to low vs high comparison
+    logp2 <- cbind(results_table[order(results_table$p.val2), c("p.val2", "log10pval2")], logt, rep("low_vs_high", nrow(results_table))) #get data frame with results relative to low vs high comparison, ordered by p-value
 
     colnames(logp1)<- c("pval", "log10pval", "theoretical", "identity")
     rownames(logp1)<-NULL #remore rownames so we can row bind the low vs inter and low vs high results
