@@ -55,57 +55,6 @@ data_nw <- create_data(betaResults)
 data_r <- create_data(betaResults_r)
 data_g <- create_data(betaResults_g)
 
-#####plot p-value histograms#####
-p <- data_nw %>%
-  ggplot( aes(x=pval, fill=identity)) +
-    geom_histogram( binwidth=0.001,  alpha=0.6) +
-    scale_fill_manual(values=c("blue", "red")) +
-#    geom_vline(xintercept = bonf, color='red') +
-    ggtitle("p-values not weighted") +
-    theme(
-      plot.title = element_text(size=15)
-    )
-
-data_r$brks<- cut(data_r$log10pval_nw, c(seq(0, 100, 1), max(data_r$log10pval_nw)))
-
-p_r1.1 <- data_r[data_r$identity%in%"low_vs_inter",] %>% ggplot( aes(x=pval, fill=brks)) +
-    geom_histogram(binwidth=0.001,  alpha=0.6) +
-    scale_fill_manual(values=colorRampPalette(c("light blue", "dark red"))(15))#    geom_vline(xintercept = bonf, color='red', linetype = "dashed") +
-    ggtitle("p-values weighted per row, low vs inter") +
-    theme(
-      plot.title = element_text(size=15)
-    )
-
-p_r1.2 <- data_r[(data_r$identity%in%"low_vs_inter" & data_r$pval<0.05),] %>% ggplot( aes(x=pval, fill=brks)) +
-    geom_histogram(binwidth=0.001,  alpha=0.6) +
-    scale_fill_manual(values=colorRampPalette(c("light blue", "dark red"))(15))#    geom_vline(xintercept = bonf, color='red', linetype = "dashed") +
-    ggtitle("p-values weighted per row, low vs inter") +
-    theme(
-      plot.title = element_text(size=15)
-    )
-
-p_r2.1 <- data_r[data_r$identity%in%"low_vs_high",] %>% ggplot( aes(x=pval, fill=brks)) +
-    geom_histogram(binwidth=0.001,  alpha=0.6) +
-    scale_fill_manual(values=colorRampPalette(c("light blue", "dark red"))(15))#    geom_vline(xintercept = bonf, color='red', linetype = "dashed") +
-    ggtitle("p-values weighted per row, low vs inter") +
-    theme(
-      plot.title = element_text(size=15)
-    )
-
-p_r2.2 <- data_r[(data_r$identity%in%"low_vs_high" & data_r$pval<0.05),] %>% ggplot( aes(x=pval, fill=brks)) +
-    geom_histogram(binwidth=0.001,  alpha=0.6) +
-    scale_fill_manual(values=colorRampPalette(c("light blue", "dark red"))(15))#    geom_vline(xintercept = bonf, color='red', linetype = "dashed") +
-    ggtitle("p-values weighted per row, low vs inter") +
-    theme(
-      plot.title = element_text(size=15)
-    )
-
-ggarrange(p_r1.1, p_r1.2, p_r2.1, p_r2.2)
-
-
-
-
-
 ###correlation of p-values
 data_cor<- cbind(data_r[data_r$identity%in%"low_vs_inter", "pval"], data_r[data_r$identity%in%"low_vs_inter", "log10pval_nw"], data_r[data_r$identity%in%"low_vs_high", "pval"], data_r[data_r$identity%in%"low_vs_high", "log10pval_nw"])
 
