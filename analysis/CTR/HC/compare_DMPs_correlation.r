@@ -55,48 +55,49 @@ data_nw <- create_data(betaResults)
 data_r <- create_data(betaResults_r)
 data_g <- create_data(betaResults_g)
 
+
+
 ###correlation of p-values
-data_cor<- cbind(data_r[data_r$identity%in%"low_vs_inter", "pval"], data_r[data_r$identity%in%"low_vs_inter", "log10pval_nw"], data_r[data_r$identity%in%"low_vs_high", "pval"], data_r[data_r$identity%in%"low_vs_high", "log10pval_nw"])
+data_cor_inter<- data.frame(cbind(data_r[data_r$identity%in%"low_vs_inter", "log10pval"], data_r[data_r$identity%in%"low_vs_inter", "log10pval_nw"]))
 
-colnames(data_cor)
-q <- data_nw %>%
-  ggplot( aes(theoretical, logpval, color=identity)) +
-  geom_point() +
-  geom_abline(intercept = 0, slope = 1) +
-#  theme_ipsum() +
-  geom_hline(yintercept = -log10(bonf), color='red')
+data_cor_high<- data.frame(cbind(data_r[data_r$identity%in%"low_vs_high", "log10pval"], data_r[data_r$identity%in%"low_vs_high", "log10pval_nw"]))
 
 
+colnames(data_cor_inter)<-c("lo10pval_inter", "log10pval_nw_inter")
+
+colnames(data_cor_high)<-c("lo10pval_high", "log10pval_nw_high")
+
+p_inter_all <- ggscatter(data_cor_inter, y = "lo10pval_inter", x = "log10pval_nw_inter", add = "reg.line", add.params = list(color = "blue")) +
+  stat_cor(method = "pearson")
+
+p_high_all <- ggscatter(data_cor_high, y = "lo10pval_high", x = "log10pval_nw_high", add = "reg.line", add.params = list(color = "blue")) +
+  stat_cor(method = "pearson")
+
+
+#only plot p-value > 0.05 to observe better
+
+p_inter_sig <- ggscatter(data_cor_inter[which(data_cor_inter$log10pval_nw_inter> (-log10(0.05))), ], y = "lo10pval_inter", x = "log10pval_nw_inter", add = "reg.line", add.params = list(color = "blue")) +
+  stat_cor(method = "pearson")
+
+p_high_sig <- ggscatter(data_cor_high[which(data_cor_high$log10pval_nw_high> (-log10(0.05))), ], y = "lo10pval_high", x = "log10pval_nw_high", add = "reg.line", add.params = list(color = "blue")) +
+  stat_cor(method = "pearson")
 
 
 
-####qq plots####
+pdf(paste0(plots_dir, "DMPs_weight_comparison_correlations_all_", cohort, "_", str_replace(region, "_ID", ""), ".pdf"))
 
-q <- data_nw %>%
-  ggplot( aes(theoretical, logpval, color=identity)) +
-  geom_point() +
-  geom_abline(intercept = 0, slope = 1) +
-#  theme_ipsum() +
-  geom_hline(yintercept = -log10(bonf), color='red')
+print(p_inter_all)
 
-#####
-
-
-q_r <- data_r %>%
-  ggplot( aes(theoretical, logpval, color=identity)) +
-  geom_point() +
-  geom_abline(intercept = 0, slope = 1) +
-  theme_ipsum() +
-  geom_hline(yintercept = -log10(bonf), color='red')
-
-pdf(paste0(plots_dir, "Bregression_weighting_comparison_", cohort, "_", str_replace(region, "_ID", ""), ".pdf"))
-  print(ggarrange(p, q))
-dev.off()
-
-
-pdf(paste0(plots_dir, "Bregression_weighting_comparison_", cohort, "_", str_replace(region, "_ID", ""), ".pdf"))
-
-ggarrange(p, p1, p2, ncol=1, nrow=3)
+print(p_high_all)
 
 dev.off()
-#####
+
+
+
+pdf(paste0(plots_dir, "DMPs_weight_comparison_correlations_sig_", cohort, "_", str_replace(region, "_ID", ""), ".pdf"))
+
+print(p_inter_sig)
+
+print(p_high_sig)
+
+dev.off()
