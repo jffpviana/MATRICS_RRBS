@@ -15,8 +15,15 @@ cohort<-"CTR"
 load(paste0(output_dir, "Variograms_smooth_", cohort, "_", str_replace(region, "_ID", ""), ".RData")) #load the R object with the two variograms smoothed
 
 
-betaResults_less <- read.csv(file=paste0(input_dir, "DMPs_less_smooth_", cohort, "_", str_replace(region, "_ID", ""), ".csv"), row.names=1)
+betaResults_sm<- read.csv(file=paste0(input_dir, "DMPs_less_smooth_", cohort, "_", str_replace(region, "_ID", ""), ".csv"), row.names=1)
  #load DMP results from clustered/smooth BiSeq objects, created in previous script
+
+#Remove NA (sites where the analysis didn't work)
+dim(betaResults_sm)
+
+betaResults_sm[-which(is.na(betaResults_sm$p.val1) | is.na(betaResults_sm$p.val1)),]->betaResults_less
+
+dim(betaResults_less)
 
 
 #have two different objects for these results so we can change p.val1 and p.val2 to p.val (so it's recognise by the makeVariogram function)
@@ -81,6 +88,6 @@ DMRs1 <- findDMRs(clusters1, max.dist=500)
 DMRs2 <- findDMRs(clusters2, max.dist=500)
 
 #save DMRs objects
-save(DMRs1, file=paste0(output_dir, "DMRs_low_vs_inter_", cohort, "_", str_replace(region, "_ID", ""), ".RData")) #save BiSeq object
+save(DMRs1, file=paste0(output_dir, "DMRs_low_vs_inter_FDR10_", cohort, "_", str_replace(region, "_ID", ""), ".RData")) #save BiSeq object
 
-save(DMRs2, file=paste0(output_dir, "DMRs_low_vs_high_", cohort, "_", str_replace(region, "_ID", ""), ".RData")) #save BiSeq object
+save(DMRs2, file=paste0(output_dir, "DMRs_low_vs_high_FDR10_", cohort, "_", str_replace(region, "_ID", ""), ".RData")) #save BiSeq object

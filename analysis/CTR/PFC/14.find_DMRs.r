@@ -49,18 +49,18 @@ locCor2 <- estLocCor(vario2.sm)
 #Test each cluster for the presence of at least one DMP.  Use cluster-wise FDR level of x%.
 
 clusters.sig1 <- testClusters(locCor1,
-FDR.cluster = 0.1)
-#37 CpG clusters rejected.
+FDR.cluster = 0.05)
+#10254 CpG clusters rejected.
 
 clusters.sig2 <- testClusters(locCor2,
-FDR.cluster = 0.1)
-#18 CpG clusters rejected.
+FDR.cluster = 0.05)
+#3678 CpG clusters rejected.
 
 
 #trim the rejected CpG clusters to remove the not differentially methylated CpG sites
-clusters.trimmed1 <- trimClusters(clusters.sig1, FDR.loc = 0.1)
+clusters.trimmed1 <- trimClusters(clusters.sig1, FDR.loc = 0.05)
 
-clusters.trimmed2 <- trimClusters(clusters.sig2, FDR.loc = 0.1)
+clusters.trimmed2 <- trimClusters(clusters.sig2, FDR.loc = 0.05)
 #These are e objects containing all differentially methylated CpG sites. The p.li column contains the P values estimated in the cluster trimming step.
 
 #For the findDMRs function to work (define DMR boundaries), the column names of these objects need to be consistent with the original/unchanged DMP results table (two groups comparison, rather than 3 groups)
