@@ -5,11 +5,11 @@ library(BiSeq)
 library(parallel)
 
 
-input_dir="/home/vianaj/Documents/MATRICS/analysis/CTR/HC/analysis/"
-output_dir="/home/vianaj/Documents/MATRICS/analysis/CTR/HC/analysis/"
+input_dir="/home/vianaj/Documents/MATRICS/analysis/CTR/PFC/analysis/"
+output_dir="/home/vianaj/Documents/MATRICS/analysis/CTR/PFC/analysis/"
 pheno_path <- "/home/vianaj/Documents/MATRICS/analysis/CTR/phenoCTR.csv"
 
-region<-"HC_ID"
+region<-"PFC_ID"
 cohort<-"CTR"
 
 load(paste0(output_dir, "Variograms_smooth_", cohort, "_", str_replace(region, "_ID", ""), ".RData")) #load the R object with the two variograms smoothed
