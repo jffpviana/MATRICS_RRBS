@@ -13,8 +13,9 @@ region<-"PFC_ID"
 cohort<-"CTR"
 
 #####change this values based on the variogram plotted in the previous script #####
-sill1 <- 1.2
-sill2 <- 1.25
+#in cases where the variogram goes beyond 1, set sill at 1.
+sill1 <- 1
+sill2 <- 1
 #####
 
 load(paste0(input_dir, "Variograms_", cohort, "_", str_replace(region, "_ID", ""), ".RData")) # load the R object with the two varigrams
