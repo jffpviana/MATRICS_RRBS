@@ -57,11 +57,11 @@ locCor2 <- estLocCor(vario2.sm)
 
 clusters.sig1 <- testClusters(locCor1,
 FDR.cluster = 0.05)
-#10254 CpG clusters rejected.
+#1773 CpG clusters rejected.
 
 clusters.sig2 <- testClusters(locCor2,
 FDR.cluster = 0.05)
-#3678 CpG clusters rejected.
+#6 CpG clusters rejected.
 
 
 #trim the rejected CpG clusters to remove the not differentially methylated CpG sites
@@ -73,21 +73,21 @@ clusters.trimmed2 <- trimClusters(clusters.sig2, FDR.loc = 0.05)
 #For the findDMRs function to work (define DMR boundaries), the column names of these objects need to be consistent with the original/unchanged DMP results table (two groups comparison, rather than 3 groups)
 
 #remove columns regarding the comparison that is not of interest in each dataset and rename the columns
-#clusters.trimmed1[, c("chr", "pos", "meth.group1", "meth.group2", "meth.diff1", "estimate1", "std.error1", "p.val", "pseudo.R.sqrt", "cluster.id", "z.score", "pos.new", "p.li")] -> clusters1
+clusters.trimmed1[, c("chr", "pos", "meth.group1", "meth.group2", "meth.diff1", "estimate1", "std.error1", "p.val", "pseudo.R.sqrt", "cluster.id", "z.score", "pos.new", "p.li")] -> clusters1
 
-#colnames(clusters1) <- c("chr", "pos", "meth.group1", "meth.group2", "meth.diff", "estimate", "std.error", "p.val", "pseudo.R.sqrt", "cluster.id", "z.score", "pos.new", "p.li")
+colnames(clusters1) <- c("chr", "pos", "meth.group1", "meth.group2", "meth.diff", "estimate", "std.error", "p.val", "pseudo.R.sqrt", "cluster.id", "z.score", "pos.new", "p.li")
 
-clusters.trimmed2[, c("chr", "pos", "meth.group1", "meth.group3", "meth.diff2", "estimate2", "std.error2", "p.val", "pseudo.R.sqrt", "cluster.id", "z.score", "pos.new", "p.li")] -> clusters2
+#clusters.trimmed2[, c("chr", "pos", "meth.group1", "meth.group3", "meth.diff2", "estimate2", "std.error2", "p.val", "pseudo.R.sqrt", "cluster.id", "z.score", "pos.new", "p.li")] -> clusters2
 
-colnames(clusters2) <- c("chr", "pos", "meth.group1", "meth.group2", "meth.diff", "estimate", "std.error", "p.val", "pseudo.R.sqrt", "cluster.id", "z.score", "pos.new", "p.li")
+#colnames(clusters2) <- c("chr", "pos", "meth.group1", "meth.group2", "meth.diff", "estimate", "std.error", "p.val", "pseudo.R.sqrt", "cluster.id", "z.score", "pos.new", "p.li")
 
 
 #identify DMR boundaries. max.dist is the same as used when clustering the CpGs
-#DMRs1 <- findDMRs(clusters1, max.dist=500)
+DMRs1 <- findDMRs(clusters1, max.dist=500)
 
-DMRs2 <- findDMRs(clusters2, max.dist=500)
+#DMRs2 <- findDMRs(clusters2, max.dist=500)
 
 #save DMRs objects
-#save(DMRs1, file=paste0(output_dir, "DMRs_low_vs_inter_FDR5_", cohort, "_", str_replace(region, "_ID", ""), ".RData")) #save BiSeq object
+save(DMRs1, file=paste0(output_dir, "DMRs_low_vs_inter_FDR5_", cohort, "_", str_replace(region, "_ID", ""), ".RData")) #save BiSeq object
 
-save(DMRs2, file=paste0(output_dir, "DMRs_low_vs_high_FDR5_", cohort, "_", str_replace(region, "_ID", ""), ".RData")) #save BiSeq object
+#save(DMRs2, file=paste0(output_dir, "DMRs_low_vs_high_FDR5_", cohort, "_", str_replace(region, "_ID", ""), ".RData")) #save BiSeq object
