@@ -20,7 +20,7 @@ current_anno <- "/home/vianaj/Documents/MATRICS/analysis/CTR/annotations_rn6_130
 source(function_path) #load external function to change the chr names in the object
 
 #load DMR objects
-load(file=paste0(output_dir, "DMRs_low_vs_inter_FDR5_", cohort, "_", str_replace(region, "_ID", ""), ".RData"))
+#load(file=paste0(output_dir, "DMRs_low_vs_inter_FDR5_", cohort, "_", str_replace(region, "_ID", ""), ".RData"))
 
 load(file=paste0(output_dir, "DMRs_low_vs_high_FDR5_", cohort, "_", str_replace(region, "_ID", ""), ".RData"))
 
@@ -28,20 +28,20 @@ load(file=paste0(output_dir, "DMRs_low_vs_high_FDR5_", cohort, "_", str_replace(
 load(current_anno)#load annotations object
 
 #substitute chr names to match the annotation object, separate function change_chr to do that
-DMRs1chr<-change_chr(DMRs1)
+#DMRs1chr<-change_chr(DMRs1)
 DMRs2chr<-change_chr(DMRs2)
 
 #substitute the scaffold names
-DMRs1chrsc<-change_scaffold(DMRs1chr)
+#DMRs1chrsc<-change_scaffold(DMRs1chr)
 DMRs2chrsc<-change_scaffold(DMRs2chr)
 
 #get all the annotations available to loop through them
 colname_anno <- colnames(annotations@elementMetadata)
 
-DMRs1chrsc->DMRs1anno
-for(i in colname_anno){
-    DMRs1anno <-  annotateGRanges(object = DMRs1anno, regions = annotations, name = i, regionInfo = i)
-}
+#DMRs1chrsc->DMRs1anno
+#for(i in colname_anno){
+#    DMRs1anno <-  annotateGRanges(object = DMRs1anno, regions = annotations, name = i, regionInfo = i)
+#}
 
 DMRs2chrsc->DMRs2anno
 for(i in colname_anno){
@@ -49,4 +49,4 @@ for(i in colname_anno){
 }
 
 
-save(DMRs1anno, DMRs2anno, file=paste0(output_dir, "DMR_FDR5_anno_", cohort, "_", str_replace(region, "_ID", ""), ".RData"))
+save(DMRs2anno, file=paste0(output_dir, "DMR_FDR5_anno_", cohort, "_", str_replace(region, "_ID", ""), ".RData"))
