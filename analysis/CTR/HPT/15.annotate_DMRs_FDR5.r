@@ -32,8 +32,8 @@ DMRs1chr<-change_chr(DMRs1)
 DMRs2chr<-change_chr(DMRs2)
 
 #substitute the scaffold names
-DMRs1chrsc<-change_scaffold(DMRs1chr)
-DMRs2chrsc<-change_scaffold(DMRs2chr)
+DMRs1chrsc<-change_scaffold(DMRs1chr, annotations)
+DMRs2chrsc<-change_scaffold(DMRs2chr, annotations)
 
 #get all the annotations available to loop through them
 colname_anno <- colnames(annotations@elementMetadata)
