@@ -15,4 +15,4 @@ This repository contains the scripts used in data analyses in the project mentio
 
 
 **Contacts**
-For any questions please contact Joana Viana j.viana@bham.ac.uk.
+For any questions please contact Joana Viana jffpviana@gmail.com.
